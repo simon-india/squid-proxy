@@ -26,10 +26,9 @@ LABEL Description="Squid forward proxy with authorization" Vendor="Yegor Bugayen
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -y
-RUN apt-get install -y squid
-RUN apt-get install -y apache2-utils
-RUN RUN apt-get clean
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y squid apache2-utils openssl
+RUN RUN apt-get clean -y
 
 COPY entry.sh /
 COPY squid.conf /etc/squid/squid.conf
